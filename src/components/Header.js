@@ -12,8 +12,12 @@ const Header = () => {
     navigate('/');
   };
 
-  const handleLogin = () => {
-    navigate('/login');
+  const handleProfileClick = () => {
+    if (user) {
+      navigate('/profile');
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -40,15 +44,21 @@ const Header = () => {
         <div className="user-section">
           {user ? (
             <div className="user-logged-in">
-              <div className="user-icon">
-                {user.profile_photo_url ? (
+              <div 
+                className="user-profile-photo"
+                onClick={handleProfileClick}
+                title="View Profile"
+              >
+                {user.profile_photo ? (
                   <img 
-                    src={user.profile_photo_url} 
+                    src={user.profile_photo} 
                     alt="Profile" 
-                    className="profile-photo"
+                    className="profile-image"
                   />
                 ) : (
-                  <i className="fas fa-user"></i>
+                  <div className="profile-placeholder">
+                    {user.name.charAt(0).toUpperCase()}
+                  </div>
                 )}
               </div>
               <span className="user-name">{user.name}</span>
@@ -61,7 +71,7 @@ const Header = () => {
               <div className="user-icon">
                 <i className="fas fa-user"></i>
               </div>
-              <button onClick={handleLogin} className="login-btn">
+              <button onClick={() => navigate('/login')} className="login-btn">
                 Login
               </button>
             </div>

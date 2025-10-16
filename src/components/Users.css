@@ -1,0 +1,297 @@
+.users-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #414141;
+  color: white;
+  min-height: calc(100vh - 80px);
+}
+
+.users-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.users-header h1 {
+  color: white;
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+}
+
+.users-header p {
+  color: #cccccc;
+  font-size: 1.1rem;
+}
+
+/* Search Section */
+.users-search-section {
+  margin-bottom: 2rem;
+}
+
+.search-bar {
+  display: flex;
+  max-width: 500px;
+  margin-bottom: 1rem;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background-color: #535353;
+  border: 2px solid #5b2501;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+  color: white;
+}
+
+.search-input::placeholder {
+  color: #cccccc;
+}
+
+.search-input:focus {
+  border-color: #6b3501;
+}
+
+.search-button {
+  background-color: #5b2501;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #6b3501;
+}
+
+.results-count {
+  color: #cccccc;
+  font-size: 0.9rem;
+}
+
+/* Users List */
+.users-list {
+  background: #535353;
+  border-radius: 8px;
+  border: 1px solid #5b2501;
+  overflow: hidden;
+}
+
+/* Table Styles */
+.users-table {
+  width: 100%;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 150px 120px 120px;
+  background-color: #5b2501;
+  padding: 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid #636363;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 150px 120px 120px;
+  padding: 1rem;
+  border-bottom: 1px solid #636363;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.table-row:hover {
+  background-color: #5a5a5a;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-cell {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+/* User ID */
+.user-id {
+  font-weight: 600;
+  color: #5b2501;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.you-badge {
+  background-color: #28a745;
+  color: white;
+  padding: 0.1rem 0.4rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* User Info */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-avatar-small {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #5b2501;
+}
+
+.user-avatar-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-small-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #5b2501;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-weight: 600;
+  color: white;
+}
+
+.user-description-small {
+  color: #cccccc;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+/* User Email */
+.user-email {
+  color: #cccccc;
+  word-break: break-all;
+}
+
+/* User Role */
+.role-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.role-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.role-badge.admin {
+  background-color: #dc3545;
+  color: white;
+}
+
+.role-badge.employer {
+  background-color: #5b2501;
+  color: white;
+}
+
+.role-badge.member {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* User Joined */
+.user-joined {
+  color: #cccccc;
+  font-size: 0.9rem;
+}
+
+/* User Actions */
+.view-profile-btn {
+  background-color: transparent;
+  color: #5b2501;
+  border: 1px solid #5b2501;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.view-profile-btn:hover {
+  background-color: #5b2501;
+  color: white;
+}
+
+/* Loading and Error States */
+.users-loading, .users-error, .no-users {
+  text-align: center;
+  padding: 3rem;
+  color: #cccccc;
+}
+
+.users-error h3, .no-users h3 {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .table-header,
+  .table-row {
+    grid-template-columns: 70px 1fr 1fr 130px 100px 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .users-container {
+    padding: 1rem;
+  }
+
+  .table-header {
+    display: none;
+  }
+
+  .table-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .table-cell {
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .user-actions {
+    justify-content: center;
+  }
+
+  .view-profile-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

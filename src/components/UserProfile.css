@@ -1,0 +1,285 @@
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #414141;
+  color: white;
+  min-height: calc(100vh - 80px);
+}
+
+.not-logged-in {
+  text-align: center;
+  padding: 4rem;
+  color: #cccccc;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #535353;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #5b2501;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #5b2501;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.profile-info h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.user-email {
+  color: #cccccc;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+
+.user-badges {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge.admin {
+  background-color: #dc3545;
+  color: white;
+}
+
+.badge.employer {
+  background-color: #5b2501;
+  color: white;
+}
+
+.badge.member {
+  background-color: #535353;
+  color: white;
+}
+
+.profile-tabs {
+  display: flex;
+  border-bottom: 1px solid #535353;
+  margin-bottom: 2rem;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  color: #cccccc;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.tab-button:hover {
+  color: white;
+}
+
+.tab-button.active {
+  color: #5b2501;
+  border-bottom-color: #5b2501;
+}
+
+.profile-content {
+  background: #535353;
+  border-radius: 8px;
+  padding: 2rem;
+  border: 1px solid #5b2501;
+}
+
+.info-section {
+  margin-bottom: 2rem;
+}
+
+.info-section:last-child {
+  margin-bottom: 0;
+}
+
+.info-section h3 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.user-description {
+  color: #cccccc;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-item label {
+  color: #cccccc;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.detail-item span {
+  color: white;
+  font-size: 1rem;
+}
+
+.badge.you {
+  background-color: #28a745;
+  color: white;
+}
+
+.badge.admin-view {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+/* Admin Settings */
+.admin-settings {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #414141;
+  border-radius: 8px;
+  border-left: 4px solid #5b2501;
+}
+
+.admin-settings h4 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.admin-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-btn.warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.admin-btn.warning:hover {
+  background-color: #e0a800;
+}
+
+.admin-btn.danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.admin-btn.danger:hover {
+  background-color: #c82333;
+}
+
+.admin-btn {
+  background-color: #5b2501;
+  color: white;
+}
+
+.admin-btn:hover {
+  background-color: #6b3501;
+}
+
+/* Permission notice for non-owners */
+.permission-notice {
+  background-color: #414141;
+  padding: 1rem;
+  border-radius: 4px;
+  border-left: 4px solid #ffc107;
+  margin-top: 1rem;
+}
+
+.permission-notice p {
+  color: #cccccc;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments for admin actions */
+@media (max-width: 768px) {
+  .admin-actions {
+    flex-direction: column;
+  }
+  
+  .admin-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1rem;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .profile-tabs {
+    flex-direction: column;
+  }
+
+  .tab-button {
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
