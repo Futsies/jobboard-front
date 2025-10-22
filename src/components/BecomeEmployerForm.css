@@ -1,0 +1,94 @@
+.employer-form-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    color: #ffffff;
+}
+
+.employer-form-card {
+    background-color: #535353;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #5b2501;
+}
+
+.employer-form-card h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.employer-form-card p {
+    color: #cccccc;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.employer-form-card .form-instructions {
+    font-size: 0.9rem;
+    color: #cccccc;
+    margin-bottom: 1.5rem;
+}
+
+/* Re-using auth styles for consistency */
+.auth-form .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: #414141;
+    border: 1px solid #5b2501;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-family: inherit;
+    min-height: 120px;
+    resize: vertical;
+}
+
+.auth-form .form-group textarea:focus {
+    outline: none;
+    border-color: #6b3501;
+}
+
+.auth-button {
+    background-color: #5b2501;
+    color: #ffffff;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover:not(:disabled) {
+    background-color: #6b3501;
+}
+
+.auth-button:disabled {
+    background-color: #414141;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.error-message {
+    color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.1);
+    border: 1px solid #ff6b6b;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.success-message {
+    color: #6bff6b;
+    background-color: rgba(107, 255, 107, 0.1);
+    border: 1px solid #6bff6b;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: center;
+}

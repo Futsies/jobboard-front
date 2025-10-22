@@ -9,6 +9,8 @@ import Users from './components/Users';
 import UserProfile from './components/UserProfile';
 import MyProfile from './components/MyProfile';
 import ViewJob from './components/ViewJob';
+import BecomeEmployerForm from './components/BecomeEmployerForm';
+import PostJobForm from './components/PostJobForm';
 import './App.css';
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
             <Route path="/users" element={<Users />} />
             <Route path="/profile" element={<MyProfile />} />
             <Route path="/users/:id" element={<UserProfile />} />
+            <Route path="/become-employer" element={<BecomeEmployerForm />} />
+            <Route path="/post-job" element={<PostJobForm />} />
           </Routes>
         </main>
       </AuthProvider>

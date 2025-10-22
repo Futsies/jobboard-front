@@ -12,10 +12,39 @@
   margin-bottom: 2rem;
 }
 
+/* New wrapper to hold search bar and post job button */
+.search-controls {
+  display: flex;
+  justify-content: space-between; /* Pushes items to opposite ends */
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* Allows button to wrap on small screens */
+  margin-bottom: 1rem;
+}
+
+/* Modified to be flexible */
 .search-bar {
   display: flex;
-  max-width: 500px;
-  margin-bottom: 1rem;
+  flex: 1; /* Allows search bar to grow */
+  max-width: 500px; /* Keeps its max width */
+}
+
+/* New button style */
+.post-job-btn {
+  background-color: #5b2501;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem; /* Matches search input height */
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.post-job-btn:hover {
+  background-color: #6b3501;
 }
 
 .search-input {

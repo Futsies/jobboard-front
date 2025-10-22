@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './JobsList.css';
 
 const JobsList = () => {
@@ -8,6 +9,7 @@ const JobsList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   // Fetch jobs from Laravel API
   useEffect(() => {
@@ -47,6 +49,19 @@ const JobsList = () => {
     navigate(`/job/${jobId}`);
   };
 
+  const handlePostJobClick = () => {
+    if (!user) {
+        navigate('/login');
+        return;
+    }
+
+    if (user.is_employer) {
+        navigate('/post-job');
+    } else {
+        navigate('/become-employer');
+    }
+  };
+
   if (loading) {
     return <div className="loading">Loading jobs...</div>;
   }
@@ -55,17 +70,22 @@ const JobsList = () => {
     <div className="jobs-list-container">
       {/* Search Bar */}
       <div className="search-section">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search by job title or category..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
-          <button className="search-button">
-            <i className="fas fa-search"></i>
-          </button>
+        <div className="search-controls">
+          <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Search by job title or category..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+            <button className="search-button">
+              <i className="fas fa-search"></i>
+            </button>
+          </div>
+            <button className="post-job-btn" onClick={handlePostJobClick}>
+              Post Job
+            </button>
         </div>
         <div className="results-count">
           {filteredJobs.length} job{filteredJobs.length !== 1 ? 's' : ''} found
