@@ -1,0 +1,99 @@
+/* UserSettings.css */
+.user-settings {
+    background-color: #535353;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.user-settings h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    color: #cccccc;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: #414141;
+    border: 1px solid #5b2501;
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+.profile-photo-section label {
+    font-weight: bold;
+}
+
+.profile-photo-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between image and button */
+    margin-top: 10px;
+}
+
+.profile-preview-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #5b2501;
+    background-color: #414141;
+}
+
+/* This hides the default file input button */
+input[type="file"] {
+    display: none;
+}
+
+/* This is our new, styled button */
+.custom-file-upload {
+    display: inline-block;
+    background-color: #414141;
+    color: #cccccc;
+    border: 1px solid #5b2501;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: #5b2501;
+    color: #ffffff;
+}
+
+.user-settings button {
+    background-color: #5b2501;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-settings button:hover {
+    background-color: #6b3501;
+}
+
+.error-message {
+    color: #ff6b6b;
+    margin-bottom: 15px;
+}
+
+.success-message {
+    color: #6bff6b;
+    margin-bottom: 15px;
+}

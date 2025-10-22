@@ -9,7 +9,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   
-  const { login } = useAuth();
+  const { login, error: authError } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -17,7 +17,7 @@ const Login = () => {
     setError('');
     setLoading(true);
 
-    const result = await login(email, password);
+    const result = await login({ email, password });
     
     if (result.success) {
       navigate('/');

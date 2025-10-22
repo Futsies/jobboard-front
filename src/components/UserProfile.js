@@ -2,31 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useParams } from 'react-router-dom';
 import './UserProfile.css';
+import UserSettings from './UserSettings';
 
 const UserProfile = () => {
-  const { user: currentUser } = useAuth();
-  const { userId } = useParams();
+  const { user: currentUser, updateUser } = useAuth();
+  const { id } = useParams(); 
   const [profileUser, setProfileUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [activeTab, setActiveTab] = useState('profile');
 
-  // Fetch user data when component mounts or userId changes
+  // Fetch user data when component mounts or id changes
   useEffect(() => {
     const fetchUser = async () => {
       try {
         setLoading(true);
         const token = localStorage.getItem('token');
         
-        // Determine which user to fetch
-        const userToFetch = userId || (currentUser ? currentUser.id : null);
-        
-        if (!userToFetch) {
+        // Use the id from the URL parameters
+        if (!id) {
           setLoading(false);
+          setError('No user ID provided in the URL.');
           return;
         }
 
-        const response = await fetch(`http://localhost:8000/api/users/${userToFetch}`, {
+        const response = await fetch(`http://localhost:8000/api/users/${id}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -39,6 +39,12 @@ const UserProfile = () => {
         }
 
         const userData = await response.json();
+
+        // Process the user data to create the full photo URL
+        if (userData.profile_photo && !userData.profile_photo.startsWith('http')) {
+          userData.profile_photo = `http://localhost:8000/storage/${userData.profile_photo}`;
+        }
+        
         setProfileUser(userData);
         setLoading(false);
       } catch (error) {
@@ -48,11 +54,21 @@ const UserProfile = () => {
     };
 
     fetchUser();
-  }, [userId, currentUser]);
+  }, [id]);
+
+  const handleProfileUpdate = (updatedUser) => {
+    setProfileUser(updatedUser);
+    
+    // 2. If the updated user is the current user, update the global context
+    if (currentUser && currentUser.id === updatedUser.id) {
+        updateUser(updatedUser);
+    }
+
+    setActiveTab('profile'); 
+  };
 
   // Check if current user can edit this profile
-  const canEdit = currentUser && profileUser && 
-                 (currentUser.id === profileUser.id || currentUser.is_admin);
+  const canEdit = currentUser && profileUser && (currentUser.id === profileUser.id || currentUser.is_admin);
 
   if (loading) {
     return (
@@ -83,13 +99,15 @@ const UserProfile = () => {
       </div>
     );
   }
+  
+  const photoUrl = profileUser.profile_photo;
 
   return (
     <div className="profile-container">
       <div className="profile-header">
         <div className="profile-avatar">
-          {profileUser.profile_photo ? (
-            <img src={profileUser.profile_photo} alt="Profile" className="avatar-image" />
+          {photoUrl ? (
+            <img src={photoUrl} alt="Profile" className="avatar-image" />
           ) : (
             <div className="avatar-placeholder">
               {profileUser.name.charAt(0).toUpperCase()}
@@ -102,11 +120,8 @@ const UserProfile = () => {
           <div className="user-badges">
             {profileUser.is_admin && <span className="badge admin">Admin</span>}
             {profileUser.is_employer && <span className="badge employer">Employer</span>}
-            <span className="badge member">Member</span>
+            {!profileUser.is_admin && !profileUser.is_employer && <span className="badge member">Member</span>}
             {currentUser && currentUser.id === profileUser.id && <span className="badge you">You</span>}
-            {currentUser && currentUser.is_admin && currentUser.id !== profileUser.id && (
-              <span className="badge admin-view">Admin View</span>
-            )}
           </div>
         </div>
       </div>
@@ -119,7 +134,6 @@ const UserProfile = () => {
           Profile Info
         </button>
         
-        {/* Only show Settings tab to profile owner or admins */}
         {canEdit && (
           <button 
             className={`tab-button ${activeTab === 'settings' ? 'active' : ''}`}
@@ -139,58 +153,13 @@ const UserProfile = () => {
                 {profileUser.description || 'No description provided.'}
               </p>
             </div>
-            
-            <div className="info-section">
-              <h3>Account Details</h3>
-              <div className="detail-grid">
-                <div className="detail-item">
-                  <label>Member Since</label>
-                  <span>{new Date(profileUser.created_at).toLocaleDateString()}</span>
-                </div>
-                <div className="detail-item">
-                  <label>Last Updated</label>
-                  <span>{new Date(profileUser.updated_at).toLocaleDateString()}</span>
-                </div>
-                <div className="detail-item">
-                  <label>User ID</label>
-                  <span>{profileUser.id}</span>
-                </div>
-                <div className="detail-item">
-                  <label>Account Type</label>
-                  <span>
-                    {profileUser.is_admin ? 'Administrator' : 
-                     profileUser.is_employer ? 'Employer' : 'Job Seeker'}
-                  </span>
-                </div>
-              </div>
-            </div>
           </div>
         )}
 
         {activeTab === 'settings' && canEdit && (
           <div className="tab-content">
-            <div className="info-section">
-              <h3>Profile Settings</h3>
-              <p>Profile photo upload and other settings will be available soon.</p>
-              
-              {/* Admin-only settings */}
-              {currentUser.is_admin && currentUser.id !== profileUser.id && (
-                <div className="admin-settings">
-                  <h4>Admin Controls</h4>
-                  <div className="admin-actions">
-                    <button className="admin-btn warning">
-                      Reset Password
-                    </button>
-                    <button className="admin-btn danger">
-                      Deactivate Account
-                    </button>
-                    <button className="admin-btn">
-                      Edit Permissions
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
+            {/* Here we render the UserSettings component */}
+            <UserSettings user={profileUser} onUpdate={handleProfileUpdate} />
           </div>
         )}
       </div>

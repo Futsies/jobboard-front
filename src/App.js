@@ -5,32 +5,32 @@ import Header from './components/Header';
 import Homepage from './components/Homepage';
 import Login from './components/Login';
 import Register from './components/Register';
-import ViewJob from './components/ViewJob';
+import Users from './components/Users';
 import UserProfile from './components/UserProfile';
-import Users from './components/Users'; // Make sure this path is correct
+import MyProfile from './components/MyProfile';
+import ViewJob from './components/ViewJob';
 import './App.css';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="App">
-          <Header />
+    // 1. Move <Router> to be the main wrapper
+    <Router>
+      {/* 2. Place <AuthProvider> inside <Router> */}
+      <AuthProvider>
+        <Header />
+        <main className="container">
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/jobs/:id" element={<ViewJob />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/job/:id" element={<ViewJob />} />
-            <Route path="/applications" element={<div>My Applications Page - Coming Soon</div>} />
-            <Route path="/dashboard" element={<div>Dashboard Page - Coming Soon</div>} />
-            <Route path="/livechat" element={<div>LiveChat Page - Coming Soon</div>} />
             <Route path="/users" element={<Users />} />
-            <Route path="/profile" element={<UserProfile />} />
-            <Route path="/user/:userId" element={<UserProfile />} />
+            <Route path="/profile" element={<MyProfile />} />
+            <Route path="/users/:id" element={<UserProfile />} />
           </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
+        </main>
+      </AuthProvider>
+    </Router>
   );
 }
 

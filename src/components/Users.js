@@ -52,17 +52,29 @@ const Users = () => {
     }
 
     const data = await response.json();
-    setUsers(data);
-    setFilteredUsers(data);
-    setLoading(false);
+    
+    const processedUsers = data.map(user => {
+      if (user.profile_photo && !user.profile_photo.startsWith('http')) {
+        return {
+          ...user,
+          profile_photo: `http://localhost:8000/storage/${user.profile_photo}`
+        };
+      }
+      return user;
+    });
+
+    setUsers(processedUsers);
+    setFilteredUsers(processedUsers);
   } catch (error) {
     setError(error.message);
+    setLoading(false);
+  } finally {
     setLoading(false);
   }
 };
 
     fetchUsers();
-  }, []);
+  }, [navigate]);
 
   // Filter users based on search term (name or ID)
   useEffect(() => {
@@ -77,7 +89,7 @@ const Users = () => {
   }, [searchTerm, users]);
 
   const handleUserClick = (userId) => {
-    navigate(`/user/${userId}`);
+    navigate(`/users/${userId}`);
   };
 
   if (loading) {
@@ -127,12 +139,11 @@ const Users = () => {
         {filteredUsers.length > 0 ? (
           <div className="users-table">
             <div className="table-header">
-              <div className="table-cell">ID</div>
+              <div className="table-cell"></div>
               <div className="table-cell">User</div>
               <div className="table-cell">Email</div>
               <div className="table-cell">Role</div>
               <div className="table-cell">Joined</div>
-              <div className="table-cell">Status</div>
             </div>
             
             {filteredUsers.map(user => (
@@ -141,12 +152,6 @@ const Users = () => {
                 className="table-row"
                 onClick={() => handleUserClick(user.id)}
               >
-                <div className="table-cell user-id">
-                  #{user.id}
-                  {currentUser && currentUser.id === user.id && (
-                    <span className="you-badge">You</span>
-                  )}
-                </div>
                 <div className="table-cell user-info">
                   <div className="user-avatar-small">
                     {user.profile_photo ? (
@@ -172,6 +177,9 @@ const Users = () => {
                 <div className="table-cell user-email">{user.email}</div>
                 <div className="table-cell user-role">
                   <div className="role-badges">
+                    {currentUser && currentUser.id === user.id && (
+                        <span className="role-badge you">You</span>
+                    )}
                     {user.is_admin && <span className="role-badge admin">Admin</span>}
                     {user.is_employer && <span className="role-badge employer">Employer</span>}
                     {!user.is_admin && !user.is_employer && <span className="role-badge member">Member</span>}
