@@ -20,12 +20,25 @@ const JobsList = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setJobs(data);
-        setFilteredJobs(data);
+
+        // Process the data to create full logo URLs
+        const processedJobs = data.map(job => {
+          if (job.company_logo && !job.company_logo.startsWith('http')) {
+            return {
+              ...job,
+              company_logo: `http://localhost:8000/storage/${job.company_logo}`
+            };
+          }
+          return job; // Return unmodified job if no logo or already a full URL
+        });
+
+        setJobs(processedJobs);
+        setFilteredJobs(processedJobs);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching jobs:', error);
-        setLoading(false);
+      } finally {
+        setLoading(false); // This should be inside finally
       }
     };
 
