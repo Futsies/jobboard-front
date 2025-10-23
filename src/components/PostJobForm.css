@@ -1,0 +1,140 @@
+.post-job-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    color: #ffffff;
+}
+
+.post-job-card {
+    background-color: #535353;
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid #5b2501;
+}
+
+.post-job-card h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.post-job-card p {
+    color: #cccccc;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Re-using auth styles */
+.auth-form .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.auth-form .form-group label {
+    display: block;
+    color: #cccccc;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.auth-form .form-group input,
+.auth-form .form-group textarea,
+.auth-form .form-group select {
+    width: 100%;
+    padding: 12px;
+    background-color: #414141;
+    border: 1px solid #5b2501;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.auth-form .form-group input:focus,
+.auth-form .form-group textarea:focus,
+.auth-form .form-group select:focus {
+    outline: none;
+    border-color: #6b3501;
+}
+
+.auth-form .form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.auth-form .form-group select option {
+    background-color: #535353;
+    color: #ffffff;
+}
+
+/* For file input */
+.auth-form .form-group input[type="file"] {
+    padding: 9px;
+    background-color: #414141;
+}
+
+.auth-form input[type="file"] {
+    display: none;
+}
+
+/* Updated section class name */
+.company-logo-section label {
+    font-weight: bold;
+}
+
+/* Updated controls class name */
+.company-logo-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between image and button */
+    margin-top: 10px;
+}
+
+/* Updated preview image class name */
+.company-logo-preview-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Square corners for logo */
+    object-fit: cover;
+    border: 3px solid #5b2501;
+    background-color: #414141;
+}
+
+/* Copied custom upload button style (no changes needed here) */
+.custom-file-upload {
+    display: inline-block;
+    background-color: #414141;
+    color: #cccccc;
+    border: 1px solid #5b2501;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: #5b2501;
+    color: #ffffff;
+}
+
+/* New layout for side-by-side fields */
+.form-group-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.form-group-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+    .form-group-row {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+}
