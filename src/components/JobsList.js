@@ -59,7 +59,7 @@ const JobsList = () => {
   }, [searchTerm, jobs]);
 
   const handleJobClick = (jobId) => {
-    navigate(`/job/${jobId}`);
+    navigate(`/jobs/${jobId}`);
   };
 
   const handlePostJobClick = () => {
