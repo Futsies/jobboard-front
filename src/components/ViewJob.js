@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios'; // Using axios for consistency
 import { useAuth } from '../context/AuthContext';
@@ -11,6 +11,10 @@ const ViewJob = () => {
     const [error, setError] = useState('');
     const { user: currentUser, token } = useAuth(); // Get current user and token
     const navigate = useNavigate();
+
+    // --- State for Save Functionality ---
+    const [isSaved, setIsSaved] = useState(false);
+    const [isSaving, setIsSaving] = useState(false); // Loading state for the save button
 
     useEffect(() => {
         const fetchJob = async () => {
@@ -37,25 +41,72 @@ const ViewJob = () => {
         fetchJob();
     }, [id]); // Re-fetch if the ID changes
 
+    // --- Fetch Saved Status (only if user is logged in) ---
+    const checkSavedStatus = useCallback(async () => {
+        if (!currentUser || !id) return; // Only run if user and id exist
+
+        try {
+            const response = await axios.get(
+                `http://localhost:8000/api/users/${currentUser.id}/saved-job-ids`,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            const savedIds = response.data; // Should be an array like [1, 5, 10]
+            // Check if the current id (as a number) is in the array
+            setIsSaved(savedIds.includes(parseInt(id)));
+        } catch (err) {
+            console.error("Failed to fetch saved job status:", err);
+            // Don't set a main error, just log it, saving is non-critical
+        }
+    }, [currentUser, id, token]); // Dependencies for useCallback
+
+    useEffect(() => {
+        checkSavedStatus();
+    }, [checkSavedStatus]); // Run checkSavedStatus when it changes (or on mount)
+
     // --- Button Action Handlers (Placeholders for now) ---
     const handleApply = () => {
-        alert('Apply functionality not yet implemented.');
-        // Later: navigate('/apply/' + id) or similar
+        if (!currentUser) {
+            // If user not logged in, redirect to login, saving intended destination
+             navigate('/login', { state: { from: `/jobs/${id}/apply` } });
+        } else {
+             // If logged in, go directly to apply form
+            navigate(`/jobs/${id}/apply`);
+        }
     };
 
     const handleSaveJob = async () => {
-        alert('Save Job functionality not yet implemented.');
-        // Later: Implement API call to save job for the user
-        // try {
-        //     await axios.post(`http://localhost:8000/api/users/${currentUser.id}/save-job`,
-        //        { job_id: id },
-        //        { headers: { Authorization: `Bearer ${token}` } }
-        //     );
-        //     alert('Job saved!');
-        // } catch (err) {
-        //     alert('Failed to save job.');
-        //     console.error(err);
-        // }
+        if (!currentUser) {
+            navigate('/login'); // Redirect if not logged in
+            return;
+        }
+        setIsSaving(true);
+        setError(''); // Clear previous errors
+
+        try {
+            if (isSaved) {
+                // --- Unsave Job ---
+                await axios.delete(
+                    `http://localhost:8000/api/users/${currentUser.id}/unsave-job/${id}`,
+                    { headers: { Authorization: `Bearer ${token}` } }
+                );
+                setIsSaved(false); // Update state
+                // alert('Job unsaved!'); // Optional feedback
+            } else {
+                // --- Save Job ---
+                await axios.post(
+                    `http://localhost:8000/api/users/${currentUser.id}/save-job`,
+                    { job_id: id }, // Send job_id in the body
+                    { headers: { Authorization: `Bearer ${token}` } }
+                );
+                setIsSaved(true); // Update state
+                // alert('Job saved!'); // Optional feedback
+            }
+        } catch (err) {
+            setError('Failed to update saved status. Please try again.');
+            console.error('Error saving/unsaving job:', err);
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     const handleEditJob = () => {
@@ -65,17 +116,9 @@ const ViewJob = () => {
     // --- Conditional Logic for Edit Button ---
     const canEditJob = currentUser && job && (currentUser.is_admin || currentUser.id === job.employer_id);
 
-    if (loading) {
-        return <div className="loading">Loading job details...</div>;
-    }
-
-    if (error) {
-        return <div className="error-message">{error}</div>;
-    }
-
-    if (!job) {
-        return <div className="error-message">Job not found.</div>;
-    }
+    if (loading) {return <div className="loading">Loading job details...</div>;}
+    if (error) {return <div className="error-message">{error}</div>;}
+    if (!job) {return <div className="error-message">Job not found.</div>;}
 
     return (
         <div className="view-job-container">
@@ -119,9 +162,14 @@ const ViewJob = () => {
                     <button onClick={handleApply} className="action-button apply-button">
                         <i className="fas fa-check-circle"></i> Apply for Position
                     </button>
-                    {currentUser && ( // Only show Save button if logged in
-                        <button onClick={handleSaveJob} className="action-button save-button">
-                            <i className="fas fa-heart"></i> Save Job
+                    {currentUser && (
+                        <button
+                            onClick={handleSaveJob}
+                            className={`action-button save-button ${isSaved ? 'saved' : ''}`}
+                            disabled={isSaving} // Disable while processing
+                        >
+                            <i className={`fas ${isSaved ? 'fa-bookmark' : 'fa-regular fa-bookmark'}`}></i> {/* Change icon */}
+                            {isSaving ? 'Updating...' : (isSaved ? 'Unsave Job' : 'Save Job')} {/* Change text */}
                         </button>
                     )}
                     {canEditJob && ( // Conditionally show Edit button

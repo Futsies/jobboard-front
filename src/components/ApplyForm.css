@@ -1,0 +1,181 @@
+.apply-form-container {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+    color: #ffffff;
+}
+
+.apply-form-card {
+    background-color: #535353;
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid #5b2501;
+}
+
+.apply-form-card h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.apply-form-card p {
+    color: #cccccc;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.back-to-job-link {
+    display: inline-block;
+    color: #cccccc;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+.back-to-job-link:hover {
+    color: #ffffff;
+}
+
+/* Reusing styles from PostJobForm/Auth */
+.auth-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.auth-form .form-group label {
+    display: block;
+    color: #cccccc;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+/* Specific styling for file inputs */
+.auth-form .form-group input[type="file"] {
+    width: 100%;
+    padding: 9px;
+    background-color: #414141;
+    border: 1px solid #5b2501;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 0.95rem; /* Slightly smaller font for file input */
+}
+
+.auth-form .form-group input[type="file"]::file-selector-button {
+    background-color: #5b2501;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.auth-form .form-group input[type="file"]::file-selector-button:hover {
+    background-color: #6b3501;
+}
+
+/* Hide the default file input */
+.auth-form input[type="file"] {
+    display: none;
+}
+
+/* Container for the button and filename */
+.file-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between button and filename */
+    margin-top: 5px; /* Space below label */
+}
+
+/* Style the label like a button */
+.custom-file-upload {
+    display: inline-block;
+    background-color: #414141;
+    color: #cccccc;
+    border: 1px solid #5b2501;
+    padding: 8px 12px; /* Slightly smaller padding */
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500; /* Normal weight */
+    font-size: 0.9rem; /* Slightly smaller font */
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Prevent button text wrapping */
+}
+
+.custom-file-upload:hover {
+    background-color: #5b2501;
+    color: #ffffff;
+}
+
+/* Style for displaying the filename */
+.file-name {
+    color: #ffffff;
+    font-size: 0.9rem;
+    /* Optional: Ellipsis for long filenames */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 150px); /* Adjust based on button width */
+}
+
+.file-instructions {
+    display: block;
+    font-size: 0.8rem;
+    color: #cccccc;
+    margin-top: 5px;
+}
+
+/* Error/Success Messages */
+.error-message, .success-message {
+    padding: 12px;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.error-message {
+    color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.1);
+    border: 1px solid #ff6b6b;
+}
+
+.success-message {
+    color: #6bff6b;
+    background-color: rgba(107, 255, 107, 0.1);
+    border: 1px solid #6bff6b;
+}
+
+/* Button */
+.auth-button {
+    background-color: #5b2501;
+    color: #ffffff;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover:not(:disabled) {
+    background-color: #6b3501;
+}
+
+.auth-button:disabled {
+    background-color: #414141;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Loading state */
+.loading {
+    text-align: center;
+    padding: 3rem;
+    color: #cccccc;
+    font-size: 1.2rem;
+}

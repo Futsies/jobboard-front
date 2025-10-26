@@ -12,6 +12,7 @@ import ViewJob from './components/ViewJob';
 import BecomeEmployerForm from './components/BecomeEmployerForm';
 import PostJobForm from './components/PostJobForm';
 import EditJobForm from './components/EditJobForm';
+import ApplyForm from './components/ApplyForm';
 import './App.css';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/become-employer" element={<BecomeEmployerForm />} />
             <Route path="/post-job" element={<PostJobForm />} />
             <Route path="/jobs/:id/edit" element={<EditJobForm />} />
+            <Route path="/jobs/:id/apply" element={<ApplyForm />} />
           </Routes>
         </main>
       </AuthProvider>

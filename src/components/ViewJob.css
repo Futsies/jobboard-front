@@ -107,7 +107,10 @@
 .job-actions {
     display: flex;
     gap: 1rem;
-    flex-wrap: wrap; /* Allow buttons to wrap */
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #636363;
 }
 
 .action-button {
@@ -135,14 +138,29 @@
     background-color: #6b3501;
 }
 
-.save-button, .edit-button {
+/* For save button */
+.save-button {
     background-color: #414141;
     color: #cccccc;
     border: 1px solid #5b2501;
 }
-.save-button:hover, .edit-button:hover {
+.save-button:hover:not(:disabled) { /* Add :not(:disabled) */
     background-color: #5b2501;
     color: #ffffff;
+}
+.save-button.saved { /* Style for when saved */
+    background-color: #5b2501;
+    color: #ffffff;
+    border-color: #6b3501; /* Slightly darker border */
+}
+.save-button.saved:hover:not(:disabled) { /* Hover when saved */
+     background-color: #6b3501;
+}
+
+/* Add disabled state style */
+.action-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* Loading and Error States */
