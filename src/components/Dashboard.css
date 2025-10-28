@@ -1,0 +1,44 @@
+.dashboard-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    color: #ffffff;
+}
+
+.dashboard-title {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+}
+
+.dashboard-section {
+    background-color: #535353;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #5b2501;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem; /* Add margin to space sections vertically */
+}
+/* Ensure the last section doesn't have extra margin */
+.dashboard-section:last-child {
+    margin-bottom: 0;
+}
+
+.dashboard-section h2 {
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #636363; /* Light separator */
+    font-size: 1.4rem;
+}
+
+.section-content {
+    color: #cccccc; /* Light gray text */
+    font-size: 0.95rem;
+}
+
+.section-content p {
+    line-height: 1.6;
+}
