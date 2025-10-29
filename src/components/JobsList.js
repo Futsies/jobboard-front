@@ -32,8 +32,10 @@ const JobsList = () => {
           return job; // Return unmodified job if no logo or already a full URL
         });
 
-        setJobs(processedJobs);
-        setFilteredJobs(processedJobs);
+        const visibleJobs = processedJobs.filter(job => !job.complete);
+
+        setJobs(visibleJobs);
+        setFilteredJobs(visibleJobs);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching jobs:', error);

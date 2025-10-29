@@ -1,0 +1,109 @@
+.user-jobs-list {
+    margin-top: 1rem;
+}
+
+.jobs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #414141; /* Darker background for table */
+    border: 1px solid #5b2501; /* Border around table */
+}
+
+.jobs-table th,
+.jobs-table td {
+    border: 1px solid #636363; /* Lighter borders inside */
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.jobs-table th {
+    background-color: #5b2501; /* Header background */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.jobs-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.jobs-table tbody tr.clickable-row {
+     cursor: pointer;
+}
+
+.jobs-table tbody tr:hover {
+    background-color: #5a5a5a; /* Hover row */
+}
+
+.jobs-table td {
+    color: #cccccc;
+}
+
+.job-actions-cell {
+    text-align: center;
+    width: 80px; /* Fixed width for actions */
+}
+
+.edit-job-button {
+    background-color: transparent;
+    color: #cccccc;
+    border: 1px solid #5b2501;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.edit-job-button:hover {
+    background-color: #5b2501;
+    color: #ffffff;
+}
+
+.error-message {
+    color: #ff6b6b;
+}
+
+/* Responsive Table (Optional - basic example) */
+@media (max-width: 600px) {
+    .jobs-table thead {
+        display: none; /* Hide headers */
+    }
+    .jobs-table, .jobs-table tbody, .jobs-table tr, .jobs-table td {
+        display: block;
+        width: 100%;
+    }
+    .jobs-table tr {
+        margin-bottom: 1rem;
+        border: 1px solid #5b2501;
+        border-radius: 4px;
+        padding: 0.5rem;
+    }
+    .jobs-table td {
+        border: none;
+        position: relative;
+        padding-left: 50%; /* Make space for label */
+        text-align: right;
+        white-space: normal;
+    }
+    .jobs-table td::before {
+        content: attr(data-label); /* Use data-label for headers */
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #ffffff; /* Header color */
+    }
+     .job-actions-cell {
+        text-align: right;
+         padding-left: 0; /* Override padding */
+         width: auto;
+    }
+    .job-actions-cell::before {
+        content: ""; /* No label for actions */
+    }
+}

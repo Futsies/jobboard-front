@@ -34,7 +34,9 @@ const Header = () => {
         <nav className="nav-menu">
           <ul>
             <li><Link to="/applications">My Applications</Link></li>
-            <li><Link to="/dashboard">Dashboard</Link></li>
+            {user && (user.is_admin || user.is_employer) && (
+                <li><Link to="/dashboard">Dashboard</Link></li>
+              )}
             <li><Link to="/livechat">LiveChat</Link></li>
             <li><Link to="/users">Users</Link></li>
           </ul>
