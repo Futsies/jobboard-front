@@ -1,0 +1,179 @@
+.view-application-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    color: #ffffff;
+}
+
+.view-application-card {
+    background-color: #535353;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #5b2501;
+}
+
+.back-to-dashboard-link {
+    display: inline-block;
+    color: #cccccc;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+.back-to-dashboard-link:hover {
+    color: #ffffff;
+}
+
+.view-application-card h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    border-bottom: 1px solid #636363;
+    padding-bottom: 1rem;
+}
+
+.application-info p {
+    color: #cccccc;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.application-info strong {
+    color: #ffffff;
+}
+
+.application-files,
+.application-actions {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #636363;
+}
+
+.application-files h3,
+.application-actions h3 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.application-files ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.application-files li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #414141; /* Darker separator */
+}
+.application-files li:last-child {
+    border-bottom: none;
+}
+
+.application-files li span {
+    color: #cccccc;
+}
+
+.download-button {
+    background-color: #414141;
+    color: #cccccc;
+    border: 1px solid #5b2501;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.download-button:hover {
+    background-color: #5b2501;
+    color: #ffffff;
+}
+.download-button i {
+    font-size: 0.8em;
+}
+
+.application-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Reusing action button styles from ViewJob */
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.action-button i { font-size: 0.9em; }
+
+/* Ensure disabled style applies */
+.action-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.schedule-button {
+    background-color: #28a745; /* Green */
+    color: #ffffff;
+    border: 1px solid #1c7430;
+}
+.schedule-button:hover {
+     background-color: #1f8e38;
+}
+
+.delete-button {
+    background-color: #dc3545; /* Red */
+    color: #ffffff;
+    border: 1px solid #a71d2a;
+}
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+/* Ensure these styles exist */
+.contact-button {
+    background-color: #414141; /* Dark gray, similar to save/edit */
+    color: #cccccc;
+    border: 1px solid #5b2501;
+}
+.contact-button:hover:not(:disabled) {
+    background-color: #5b2501;
+    color: #ffffff;
+}
+
+/* Error messages */
+.error-message {
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+.download-error {
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: rgba(255, 107, 107, 0.1);
+    border: 1px solid #ff6b6b;
+    border-radius: 4px;
+}
+
+/* Loading state */
+.loading {
+    text-align: center;
+    padding: 3rem;
+    color: #cccccc;
+    font-size: 1.2rem;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Navigate } from 'react-router-dom';
 import UserJobsList from './UserJobsList';
+import ReceivedApplicationsList from './ReceivedApplicationsList';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -30,9 +31,7 @@ const Dashboard = () => {
                 <section className="dashboard-section">
                     <h2>Applications Received</h2>
                     <div className="section-content">
-                        {/* Content for applications received will go here */}
-                         <p>Applications submitted for your job posts will appear here.</p>
-                         {/* We'll add logic to fetch and display applications */}
+                        <ReceivedApplicationsList />
                     </div>
                 </section>
 

@@ -1,0 +1,104 @@
+.received-applications-list {
+    margin-top: 1rem;
+}
+
+/* Reusing table styles from UserJobsList.css - consider making a shared table CSS component later */
+.applications-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #414141;
+    border: 1px solid #5b2501;
+}
+
+.applications-table th,
+.applications-table td {
+    border: 1px solid #636363;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.applications-table th {
+    background-color: #5b2501;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.applications-table tbody tr:hover {
+    background-color: #5a5a5a;
+}
+
+.applications-table td {
+    color: #cccccc;
+}
+
+.app-actions-cell {
+    text-align: center;
+    width: 120px; /* Adjust width as needed */
+}
+
+.view-app-button {
+    background-color: transparent;
+    color: #cccccc;
+    border: 1px solid #5b2501;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Prevent button text wrapping */
+}
+
+.view-app-button:hover {
+    background-color: #5b2501;
+    color: #ffffff;
+}
+
+.error-message {
+    color: #ff6b6b;
+}
+
+/* Responsive Table (Copy/Adapt from UserJobsList.css if needed) */
+@media (max-width: 600px) {
+    .applications-table thead {
+        display: none;
+    }
+    .applications-table, .applications-table tbody, .applications-table tr, .applications-table td {
+        display: block;
+        width: 100%;
+    }
+    .applications-table tr {
+        margin-bottom: 1rem;
+        border: 1px solid #5b2501;
+        border-radius: 4px;
+        padding: 0.5rem;
+    }
+    .applications-table td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+        white-space: normal;
+         min-height: 24px; /* Ensure cell has height even if empty */
+    }
+    .applications-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #ffffff;
+    }
+     .app-actions-cell {
+        text-align: right;
+         padding-left: 0;
+         width: auto;
+    }
+    .app-actions-cell::before {
+        content: ""; /* No label */
+    }
+}

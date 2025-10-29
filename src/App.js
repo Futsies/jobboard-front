@@ -14,13 +14,13 @@ import PostJobForm from './components/PostJobForm';
 import EditJobForm from './components/EditJobForm';
 import ApplyForm from './components/ApplyForm';
 import Dashboard from './components/Dashboard';
+import ViewApplication from './components/ViewApplication';
+import ScheduleInterviewForm from './components/ScheduleInterviewForm';
 import './App.css';
 
 function App() {
   return (
-    // 1. Move <Router> to be the main wrapper
     <Router>
-      {/* 2. Place <AuthProvider> inside <Router> */}
       <AuthProvider>
         <Header />
         <main className="container">
@@ -37,6 +37,8 @@ function App() {
             <Route path="/jobs/:id/edit" element={<EditJobForm />} />
             <Route path="/jobs/:id/apply" element={<ApplyForm />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/applications/:applicationId" element={<ViewApplication />} />
+            <Route path="/applications/:applicationId/schedule" element={<ScheduleInterviewForm />} />
           </Routes>
         </main>
       </AuthProvider>
