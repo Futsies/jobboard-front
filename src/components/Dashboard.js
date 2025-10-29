@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { Navigate } from 'react-router-dom';
 import UserJobsList from './UserJobsList';
 import ReceivedApplicationsList from './ReceivedApplicationsList';
+import InterviewCalendar from './InterviewCalendar';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -39,9 +40,7 @@ const Dashboard = () => {
                 <section className="dashboard-section">
                     <h2>Interview Scheduling</h2>
                      <div className="section-content">
-                        {/* Content for interview scheduling will go here */}
-                        <p>Interview scheduling tools and calendar will appear here.</p>
-                        {/* This might be a more complex feature for later */}
+                        <InterviewCalendar />
                     </div>
                 </section>
             </div>

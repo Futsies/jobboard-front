@@ -18,7 +18,8 @@ const EditJobForm = () => {
         job_type: 'Full-time',
         salary: '',
         company_name: '',
-        category: ''
+        category: '',
+        complete: 0
     });
 
     const [companyLogo, setCompanyLogo] = useState(null); // For new logo upload
@@ -58,7 +59,8 @@ const EditJobForm = () => {
                     job_type: jobData.job_type || 'Full-time',
                     salary: jobData.salary || '',
                     company_name: jobData.company_name || '',
-                    category: jobData.category || ''
+                    category: jobData.category || '',
+                    complete: jobData.complete || 0
                 });
 
                 // Set the original logo URL
@@ -242,6 +244,21 @@ const EditJobForm = () => {
                             <label htmlFor="salary">Salary (Optional)</label>
                             <input type="number" id="salary" name="salary" value={formData.salary} onChange={handleChange} placeholder="e.g., 85000" min="0"/>
                         </div>
+                    </div>
+
+                    {/* Completion */}
+                    <div className="form-group">
+                        <label htmlFor="complete">Change Completion (Visibility)</label>
+                        <select 
+                            id="complete" 
+                            name="complete" 
+                            value={formData.complete} 
+                            onChange={handleChange}
+                        >
+                            <option value="0">False: Job is visible</option>
+                            <option value="1">True: Job is hidden</option>
+                        </select>
+                         <small className="file-instructions">False: Job is visible, True: Job is hidden.</small>
                     </div>
 
                     {/* Company Logo Upload */}

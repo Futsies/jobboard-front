@@ -1,0 +1,160 @@
+/* Ensure calendar height is respected */
+.interview-calendar-container .rbc-calendar {
+    height: 500px; /* Or whatever height you set in style prop */
+    background-color: #535353; /* Background for calendar */
+    border: 1px solid #5b2501;
+    border-radius: 4px;
+    color: #ffffff; /* Default text color */
+}
+
+/* Override default blue event color */
+.rbc-event {
+    background-color: #5b2501 !important; /* Use !important cautiously */
+    border: 1px solid #4a1f01 !important;
+    border-radius: 4px !important;
+    color: #ffffff !important;
+    padding: 3px 5px !important;
+}
+.rbc-event:focus {
+     outline: none !important;
+}
+
+/* Header/Toolbar styling */
+.rbc-toolbar {
+    background-color: #414141; /* Darker background for toolbar */
+    padding: 10px;
+    border-bottom: 1px solid #5b2501;
+    border-radius: 4px 4px 0 0;
+}
+.rbc-toolbar button {
+    background-color: #5b2501 !important;
+    border: none !important;
+    color: #ffffff !important;
+    padding: 5px 10px !important;
+    border-radius: 3px !important;
+    transition: background-color 0.3s ease !important;
+}
+.rbc-toolbar button:hover,
+.rbc-toolbar button:active,
+.rbc-toolbar button.rbc-active {
+    background-color: #6b3501 !important;
+    box-shadow: none !important;
+}
+.rbc-toolbar .rbc-toolbar-label {
+    color: #ffffff; /* Month/Year text */
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Day/Header cell styling */
+.rbc-header {
+    background-color: #4a1f01; /* Slightly darker brown */
+    color: #ffffff;
+    padding: 8px 0;
+    text-align: center;
+    border-bottom: 1px solid #5b2501;
+}
+
+/* Date cell styling */
+.rbc-day-bg {
+    border-left: 1px solid #636363 !important; /* Vertical grid lines */
+}
+.rbc-month-view, .rbc-time-view {
+    border-top: 1px solid #636363 !important; /* Horizontal grid lines */
+}
+.rbc-off-range-bg {
+    background-color: #414141 !important; /* Darker background for dates outside month */
+}
+.rbc-today {
+     background-color: #636363 !important; /* Highlight today's date */
+}
+.rbc-date-cell {
+    color: #cccccc; /* Date numbers */
+}
+.rbc-date-cell.rbc-now {
+    font-weight: bold;
+    color: #ffffff; /* Today's date number */
+}
+
+
+/* --- Simple Modal Styles --- */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050; /* Ensure it's above other content */
+}
+
+.modal-content {
+    background-color: #535353; /* Medium gray */
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #5b2501;
+    color: #ffffff;
+    width: 90%;
+    max-width: 500px; /* Max width for the modal */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #ffffff;
+    border-bottom: 1px solid #636363;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.modal-content p {
+    color: #cccccc;
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+.modal-content p strong {
+    color: #ffffff;
+}
+
+.modal-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #ffffff;
+    background-color: #414141;
+    border: 1px solid #5b2501;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.modal-link:hover {
+     background-color: #5b2501;
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #cccccc;
+    cursor: pointer;
+    line-height: 1; /* Adjust vertical alignment if needed */
+}
+.modal-close-button:hover {
+    color: #ffffff;
+}
+.modal-close-button::before {
+    content: '\00d7'; /* Unicode multiplication sign (X) */
+}
+
+
+/* General error message style (if not already global) */
+.error-message {
+    color: #ff6b6b;
+}

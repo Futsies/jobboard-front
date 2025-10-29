@@ -16,6 +16,7 @@ import ApplyForm from './components/ApplyForm';
 import Dashboard from './components/Dashboard';
 import ViewApplication from './components/ViewApplication';
 import ScheduleInterviewForm from './components/ScheduleInterviewForm';
+import MyApplications from './components/MyApplications';
 import './App.css';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/applications/:applicationId" element={<ViewApplication />} />
             <Route path="/applications/:applicationId/schedule" element={<ScheduleInterviewForm />} />
+            <Route path="/applications" element={<MyApplications />} />
           </Routes>
         </main>
       </AuthProvider>
