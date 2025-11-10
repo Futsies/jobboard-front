@@ -17,6 +17,7 @@ import Dashboard from './components/Dashboard';
 import ViewApplication from './components/ViewApplication';
 import ScheduleInterviewForm from './components/ScheduleInterviewForm';
 import MyApplications from './components/MyApplications';
+import ApplicantViewApplication from './components/ApplicantViewApplication';
 import './App.css';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
             <Route path="/applications/:applicationId" element={<ViewApplication />} />
             <Route path="/applications/:applicationId/schedule" element={<ScheduleInterviewForm />} />
             <Route path="/applications" element={<MyApplications />} />
+            <Route path="/my-applications/:applicationId" element={<ApplicantViewApplication />} />
           </Routes>
         </main>
       </AuthProvider>
