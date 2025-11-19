@@ -1,0 +1,193 @@
+/* * Updated Chat Page Styles
+ * - Swapped all colors to match your dark gray/brown theme
+ * - Main Background: #414141
+ * - Cards: #535353
+ * - Accent: #5b2501
+ * - Hover: #6b3501
+ * - Text: #ffffff / #cccccc
+ */
+
+.chat-page-container {
+    display: flex;
+    height: calc(100vh - 120px); /* Full height minus header/padding */
+    border: 1px solid #5b2501; /* Accent/Borders */
+    border-radius: 8px;
+    overflow: hidden;
+    background: #535353; /* Clickable Elements/Cards */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Darker shadow for dark bg */
+    color: #ffffff; /* Text */
+}
+
+/* --- Left Panel: Conversation List --- */
+.chat-sidebar {
+    width: 300px;
+    border-right: 1px solid #5b2501; /* Accent/Borders */
+    background: #414141; /* Main Background */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat-sidebar-header {
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border-bottom: 1px solid #5b2501; /* Accent/Borders */
+    background: #414141; /* Main Background */
+    color: #ffffff; /* Text */
+}
+
+.conversation-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.conversation-item {
+    padding: 1rem;
+    border-bottom: 1px solid #5b2501; /* Accent/Borders */
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.conversation-item:hover {
+    background-color: #6b3501; /* Hover States */
+}
+
+.conversation-item.active {
+    background-color: #6b3501; /* Hover States */
+    border-right: 3px solid #6b3501; /* Lighter brown accent */
+}
+
+.convo-name {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff; /* Text */
+}
+
+.convo-latest-message {
+    font-size: 0.9rem;
+    color: #cccccc; /* Secondary Text */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.convo-loading,
+.convo-error,
+.convo-empty {
+    padding: 1rem;
+    text-align: center;
+    color: #cccccc; /* Secondary Text */
+}
+
+/* --- Right Panel: Message Window --- */
+.chat-window {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #535353; /* Clickable Elements/Cards */
+}
+
+.chat-window-select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #cccccc; /* Secondary Text */
+    font-size: 1.1rem;
+}
+
+.chat-window-header {
+    padding: 1rem;
+    border-bottom: 1px solid #5b2501; /* Accent/Borders */
+    background: #535353; /* Clickable Elements/Cards */
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 10;
+    color: #ffffff; /* Text */
+}
+
+.messages-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+}
+
+.message {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    max-width: 70%;
+    line-height: 1.4;
+    color: #ffffff; /* Text */
+}
+
+.message-sender {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #ffffff; /* Text */
+}
+
+.their-message {
+    background-color: #414141; /* Main Background */
+    border-bottom-left-radius: 0;
+    align-self: flex-start;
+}
+
+.my-message {
+    background-color: #6b3501; /* Hover States (for "my" messages) */
+    border-bottom-right-radius: 0;
+    align-self: flex-end;
+}
+
+.message-input-form {
+    display: flex;
+    padding: 1rem;
+    border-top: 1px solid #5b2501; /* Accent/Borders */
+    background: #414141; /* Main Background */
+}
+
+.message-input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #5b2501; /* Accent/Borders */
+    background-color: #535353; /* Clickable Elements/Cards */
+    color: #ffffff; /* Text */
+    border-radius: 8px;
+    margin-right: 0.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.message-input:focus {
+    outline: none;
+    border-color: #6b3501; /* Hover States */
+    box-shadow: 0 0 0 3px rgba(107, 53, 1, 0.4); /* Shadow from hover color */
+}
+
+.message-send-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: #5b2501; /* Accent/Borders */
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.message-send-button:hover {
+    background: #6b3501; /* Hover States */
+}
+
+.message-send-button:disabled {
+    background: #535353; /* Clickable Elements/Cards */
+    color: #cccccc;
+    cursor: not-allowed;
+}

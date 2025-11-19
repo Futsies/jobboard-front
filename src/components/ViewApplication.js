@@ -16,6 +16,9 @@ const ViewApplication = () => {
     const [downloadError, setDownloadError] = useState(''); // Specific error for downloads
     const [isDeleting, setIsDeleting] = useState(false);
 
+    const [isStartingChat, setIsStartingChat] = useState(false);
+    const [chatError, setChatError] = useState('');
+
     // Fetch application details
     useEffect(() => {
         const fetchApplication = async () => {
@@ -127,9 +130,38 @@ const ViewApplication = () => {
         navigate(`/applications/${applicationId}/schedule`); // Navigate to schedule form
     };
 
-    const handleContactApplicant = () => {
-        alert('Contact Applicant functionality not yet implemented.');
-        // Later: Implement modal or other contact feature
+    const handleContactApplicant = async () => {
+        // We need the applicant's ID from the application object
+        const recipientId = application?.user_id;
+
+        if (!recipientId) {
+            setChatError('Cannot find applicant ID to start chat.');
+            return;
+        }
+
+        setIsStartingChat(true);
+        setChatError('');
+
+        try {
+            // Call the new API endpoint we created
+            await axios.post(
+                'http://localhost:8000/api/conversations/start',
+                { recipient_id: recipientId }, // Send the applicant's ID
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            
+            // On success, redirect to the chat page.
+            navigate('/chat');
+
+        } catch (err) {
+            if (err.response?.status === 422) { // Validation error from controller
+                setChatError(err.response.data.message); // e.g., "Cannot chat with yourself"
+            } else {
+                setChatError('Failed to start chat. Please try again.');
+            }
+            console.error("Error starting chat:", err);
+            setIsStartingChat(false); // Only re-enable button if there was an error
+        }
     };
 
     // --- Render Logic ---
@@ -190,18 +222,39 @@ const ViewApplication = () => {
                     <div className="application-actions">
                         <h3>Actions</h3>
                         <button
-                            onClick={handleContactApplicant} // Use the new handler
-                            className="action-button contact-button"
-                            disabled={isDeleting} // Disable if deleting
+                            onClick={handleContactApplicant} // Correct handler
+                            className="action-button contact-button" // Existing class
+                            disabled={isStartingChat || isDeleting} // Disable if starting chat or deleting
                         >
-                            <i className="fas fa-envelope"></i> Contact Applicant
+                            {isStartingChat ? (
+                                <><i className="fas fa-spinner fa-spin"></i> Starting Chat...</>
+                            ) : (
+                                <><i className="fas fa-comments"></i> Start Chat</> // Updated text
+                            )}
                         </button>
-                        <button onClick={handleScheduleInterview} className="action-button schedule-button">
+                        
+                        <button 
+                            onClick={handleScheduleInterview} 
+                            className="action-button schedule-button"
+                            disabled={isStartingChat || isDeleting} // Also disable
+                        >
                              <i className="fas fa-calendar-check"></i> Schedule Interview
                         </button>
-                        <button onClick={handleDeleteApplication} className="action-button delete-button">
-                            <i className="fas fa-trash-alt"></i> Delete Application
+                        
+                        <button 
+                            onClick={handleDeleteApplication} 
+                            className="action-button delete-button"
+                            disabled={isStartingChat || isDeleting} // Also disable
+                        >
+                            {isDeleting ? (
+                                <><i className="fas fa-spinner fa-spin"></i> Deleting...</>
+                            ) : (
+                                <><i className="fas fa-trash-alt"></i> Delete Application</>
+                            )}
                         </button>
+                        
+                        {/* Show chat error if it exists */}
+                        {chatError && <p className="error-message download-error" style={{marginTop: '10px'}}>{chatError}</p>}
                     </div>
                 )}
             </div>

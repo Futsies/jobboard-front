@@ -37,7 +37,7 @@ const Header = () => {
             {user && (user.is_admin || user.is_employer) && (
                 <li><Link to="/dashboard">Dashboard</Link></li>
               )}
-            <li><Link to="/livechat">LiveChat</Link></li>
+            <li><Link to="/chat">LiveChat</Link></li>
             <li><Link to="/users">Users</Link></li>
           </ul>
         </nav>
