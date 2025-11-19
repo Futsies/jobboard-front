@@ -18,6 +18,7 @@ import ViewApplication from './components/ViewApplication';
 import ScheduleInterviewForm from './components/ScheduleInterviewForm';
 import MyApplications from './components/MyApplications';
 import ApplicantViewApplication from './components/ApplicantViewApplication';
+import ChatPage from './components/ChatPage';
 import './App.css';
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             <Route path="/applications/:applicationId/schedule" element={<ScheduleInterviewForm />} />
             <Route path="/applications" element={<MyApplications />} />
             <Route path="/my-applications/:applicationId" element={<ApplicantViewApplication />} />
+            <Route path="/chat" element={<ChatPage />} />
           </Routes>
         </main>
       </AuthProvider>
